@@ -38,6 +38,10 @@ public class BinarySearchTree<T> extends AbstractSet<T>
         return size;
     }
 
+    public Node<T> getRoot() {
+        return root;
+    }
+
     public Iterator<T> iterator()
     {
         return new TreeIterator();
@@ -150,6 +154,7 @@ public class BinarySearchTree<T> extends AbstractSet<T>
     {
         size--;
         if (p.left != null && p.right != null) {
+
             Node<T> s = successor(p);
             p.element = s.element;
             p = s;
@@ -236,6 +241,15 @@ public class BinarySearchTree<T> extends AbstractSet<T>
             deleteNode(lastReturned);
             lastReturned = null;
         }
+    }
+
+    public int getTotalDepth(Node<T> root, int nodeDepth) {
+        if (root == null) return 0;
+        return nodeDepth + getTotalDepth(root.left, nodeDepth + 1) + getTotalDepth(root.right, nodeDepth + 1);
+    }
+
+    public double getAverageDepth() {
+        return (double) getTotalDepth(this.root, 0) / this.size;
     }
 
 }
