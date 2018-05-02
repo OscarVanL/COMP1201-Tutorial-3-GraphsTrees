@@ -12,6 +12,7 @@ public class AverageDepthFinder {
             System.out.println("You must give an integer amount of elements to add to the tree as argument");
             inputAmount = 0;
         } else if (isInteger(args[0])) {
+            System.out.println("Running with " + args[0] + " nodes.");
             inputAmount = Integer.parseInt(args[0]);
         } else {
             System.out.println("Non integer argument given.");
@@ -25,7 +26,7 @@ public class AverageDepthFinder {
         for (int repeats=0; repeats<10; repeats++) {
             bst = new BinarySearchTree<>();
             for (int i=0; i<inputAmount; i++) {
-                bst.add(rand.nextInt(10));
+                bst.add(rand.nextInt(1000000000));
             }
             System.out.println("Average depth: " + bst.getAverageDepth());
             depths[repeats] = bst.getAverageDepth();
