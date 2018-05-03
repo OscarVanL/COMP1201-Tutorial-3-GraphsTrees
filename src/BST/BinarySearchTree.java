@@ -1,3 +1,5 @@
+package bst;
+
 import java.util.*;
 
 public class BinarySearchTree<T> extends AbstractSet<T>
@@ -248,7 +250,11 @@ public class BinarySearchTree<T> extends AbstractSet<T>
         return nodeDepth + getTotalDepth(root.left, nodeDepth + 1) + getTotalDepth(root.right, nodeDepth + 1);
     }
 
-    public double getAverageDepth() {
+    /**
+     * Uses the getTotalDepth method with the size of the BinarySearchTree to find a mean depth.
+     * @return double : Mean
+     */
+    public double getMeanDepth() {
         return (double) getTotalDepth(this.root, 0) / this.size;
     }
 

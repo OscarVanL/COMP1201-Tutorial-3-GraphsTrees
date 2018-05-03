@@ -1,4 +1,5 @@
-import org.junit.Before;
+package bst;
+
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -31,6 +32,19 @@ public class BinarySearchTreeTest {
     }
 
     /**
+     *
+     */
+    @Test
+    public void testAddRemoveSize() {
+        BinarySearchTree<String> tree = new BinarySearchTree<String>();
+        String element = "Test";
+        tree.add(element);
+        assertEquals(".size() returns invalid number of elements", 1, tree.size());
+        tree.remove(element);
+        assertEquals(".size() returns invalid number of elements", 0, tree.size());
+    }
+
+    /**
      * Tests removal functionality of BST.
      * First adds 100 elements to the tree like in the testAdd() test, then iteratively removes these.
      * If .remove() returns false when we try to remove an element contained in the tree, it is not working properly.
@@ -57,7 +71,7 @@ public class BinarySearchTreeTest {
     }
 
     /**
-     * Tests functionality of .contains() function of BinarySearchTree.
+     * Tests functionality of .contains() function of bst.BinarySearchTree.
      * Adds 100 objects to the tree, and also adds these same objects to a List. Then iterates through the
      * List and checks that the tree's .contains() function can find all the values in the list.
      */
@@ -95,9 +109,7 @@ public class BinarySearchTreeTest {
     public void testRemoveNonContained() {
         BinarySearchTree tree = addElements();
         boolean success = tree.remove("Apples");
-        if (success) {
-            fail(".remove() returns true when trying to remove an element not contained in the tree");
-        }
+        assertEquals(".remove() returns true when trying to remove an element not contained in the tree", success, false);
     }
 
     /**
@@ -166,7 +178,7 @@ public class BinarySearchTreeTest {
 
     /**
      * Initialises a tree with 100 nodes, with integer values from 0 to 100. This is used in later tests
-     * @return BinarySearchTree containing integers 0 to 100.
+     * @return bst.BinarySearchTree containing integers 0 to 100.
      */
     public BinarySearchTree<Integer> addElements() {
         BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
