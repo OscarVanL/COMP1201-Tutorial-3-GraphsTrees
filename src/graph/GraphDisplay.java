@@ -1,4 +1,4 @@
-package vertex;
+package graph;
 
 import java.awt.*;
 import java.awt.event.*;

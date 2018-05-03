@@ -32,7 +32,7 @@ public class BinarySearchTreeTest {
     }
 
     /**
-     *
+     * Tests the functionality of the .size() method when adding and removing elements to ensure that the count is properly maintained.
      */
     @Test
     public void testAddRemoveSize() {
@@ -96,9 +96,10 @@ public class BinarySearchTreeTest {
     /**
      * Tests .contains() functionality by checking for a node not present in the tree.
      */
+    @Test
     public void testNonContained() {
         BinarySearchTree<Integer> tree = addElements();
-        if (tree.contains("Apples")) {
+        if (tree.contains(127)) {
             fail(".contains() method returns true for an element not contained in BST");
         }
     }
@@ -106,9 +107,10 @@ public class BinarySearchTreeTest {
     /**
      * Test BST's .remove() function by trying to remove a node that is not in the tree.
      */
+    @Test
     public void testRemoveNonContained() {
         BinarySearchTree tree = addElements();
-        boolean success = tree.remove("Apples");
+        boolean success = tree.remove(127);
         assertEquals(".remove() returns true when trying to remove an element not contained in the tree", success, false);
     }
 
@@ -151,6 +153,7 @@ public class BinarySearchTreeTest {
         }
     }
 
+
     /**
      * Tests the Iterator's .next() method will correctly throw an exception when we iterate past the size of the BST.
      * We fill the BST with 100 elements but run .next() 101 times. It should throw an exception on the 101st execution.
@@ -174,6 +177,20 @@ public class BinarySearchTreeTest {
         Iterator<Integer> iterator = tree.iterator();
 
         iterator.remove();
+    }
+
+    /**
+     * We test the Iterator's remove() method will correctly modify the value returned by .size() after removing an element.
+     */
+    @Test
+    public void testIteratorRemove() {
+        BinarySearchTree<Integer> tree = addElements();
+        Iterator<Integer> iterator = tree.iterator();
+        for (int i=99; i>=0; i--) {
+            iterator.next();
+            iterator.remove();
+            assertEquals("Value of .size() after using Iterator's .remove() method does not match expected value", i, tree.size());
+        }
     }
 
     /**
